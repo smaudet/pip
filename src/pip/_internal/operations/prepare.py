@@ -81,14 +81,16 @@ def _get_prepared_distribution(
         req,  # type: InstallRequirement
         req_tracker,  # type: RequirementTracker
         finder,  # type: PackageFinder
-        build_isolation  # type: bool
+        build_isolation,  # type: bool
+        no_deps # type: bool
 ):
     # type: (...) -> AbstractDistribution
     """Prepare a distribution for installation.
     """
     abstract_dist = make_distribution_for_install_requirement(req)
     with req_tracker.track(req):
-        abstract_dist.prepare_distribution_metadata(finder, build_isolation)
+        _build_isolation = build_isolation and not no_deps
+        abstract_dist.prepare_distribution_metadata(finder, _build_isolation)
     return abstract_dist
 
 

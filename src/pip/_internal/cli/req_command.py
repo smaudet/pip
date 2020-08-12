@@ -211,6 +211,7 @@ class RequirementCommand(IndexGroupCommand):
         use_user_site,            # type: bool
         download_dir=None,        # type: str
         wheel_download_dir=None,  # type: str
+        no_deps=False             # type: bool
     ):
         # type: (...) -> RequirementPreparer
         """
@@ -232,6 +233,7 @@ class RequirementCommand(IndexGroupCommand):
             finder=finder,
             require_hashes=options.require_hashes,
             use_user_site=use_user_site,
+            no_deps=no_deps
         )
 
     @staticmethod

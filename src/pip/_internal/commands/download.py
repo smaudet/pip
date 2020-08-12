@@ -109,6 +109,7 @@ class DownloadCommand(RequirementCommand):
 
         reqs = self.get_requirements(args, options, finder, session)
 
+        no_deps = 'no-deps' in args
         preparer = self.make_requirement_preparer(
             temp_build_dir=directory,
             options=options,
@@ -117,6 +118,7 @@ class DownloadCommand(RequirementCommand):
             finder=finder,
             download_dir=options.download_dir,
             use_user_site=False,
+            no_deps=no_deps,
         )
 
         resolver = self.make_resolver(
